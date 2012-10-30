@@ -4,5 +4,5 @@ init:
 test:
 	nosetests tests
 
-dist:
-	python setup.py bdist upload
+publish:
+	python setup.py sdist upload

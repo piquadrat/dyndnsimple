@@ -1,0 +1,1 @@
+include README.md LICENSE test/*. scripts/*. dyndnsimple/*. docs/*. config/*.

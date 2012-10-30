@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from dyndnsimple import __version__ as version
+import dyndnsimple
 from setuptools import setup, find_packages
 
 with open('README.md') as f:
@@ -10,14 +10,16 @@ with open('LICENSE') as f:
 
 setup(
     name='dyndnsimple',
-    version=version,
+    version="0.0.6",
     description='Package for updating DNSimple domain with a WAN IP address.',
     long_description=readme,
     author='Ben Hughes',
     author_email='bwghughes@gmail.com',
     url='https://github.com/bwghughes/dyndnsimple',
     license=license,
-    packages=find_packages(exclude=('test', 'docs', 'config')),
+    #packages=#find_packages(exclude=('test', 'docs', 'config')),
+    packages=['dyndnsimple'],
+    package_dir={'dyndnsimple': 'dyndnsimple'},
     classifiers=(
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',

@@ -1,28 +1,10 @@
 #!/usr/bin/env python
-import json
-import requests
+# -*- coding: utf-8 -*-
+from .dyndnsimple import get_ip, update_dns
 from requests.exceptions import ConnectionError
 
-__version__ = "0.0.3"
 
-def get_ip():
-    """ Gets IP address from http://josnip.com """
-    response = requests.get("http://jsonip.com")
-    return json.loads(response.content).get("ip", None)
-
-
-def update_dns(ip_address, url, options):
-    """ Updated DNS Record with new ip address """
-    data = {"record": {"name": "h", "content": ip_address}}
-    headers = {"Content-Type": "application/json",
-               "X-DNSimple-Token": "{0}:{1}"
-               .format(options.email, options.token),
-               "Accept": "application/json"}
-    response = requests.put(url, data=json.dumps(data), headers=headers)
-    assert response.status_code == 200
-
-
-def main():
+def run():
     import argparse
     PARSER = argparse.ArgumentParser(description='')
     PARSER.add_argument('--email', action="store", dest="email", type=str)
@@ -47,7 +29,3 @@ def main():
             print "Done."
     except ConnectionError, e:
         print "Cannot find wan ip: {}".format(e)
-
-
-if __name__ == '__main__':
-    main()
