@@ -7,14 +7,16 @@ from requests.exceptions import ConnectionError
 def run():
     import argparse
     PARSER = argparse.ArgumentParser(description='')
-    PARSER.add_argument('--email', action="store", dest="email", type=str)
-    PARSER.add_argument('--token', action="store", dest="token", type=str)
+    PARSER.add_argument('--email', action="store", dest="email", type=str,
+                        required=True)
+    PARSER.add_argument('--token', action="store", dest="token", type=str,
+                        required=True)
     PARSER.add_argument('--record_id', action="store", dest="record_id",
-                        type=str)
+                        type=str, required=True)
     PARSER.add_argument('--domain_id', action="store", dest="domain_id",
-                        type=str)
+                        type=str, required=True)
     PARSER.add_argument('--domain', action="store", dest="domain",
-                        type=str)
+                        type=str, required=True)
     options = PARSER.parse_args()
 
     print "Getting IP..."

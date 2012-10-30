@@ -1,1 +1,6 @@
-include README.md LICENSE test/*. scripts/*. dyndnsimple/*. docs/*. config/*.
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include test *
+recursive-include scripts *
+recursive-include docs *

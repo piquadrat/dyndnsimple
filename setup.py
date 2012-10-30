@@ -8,18 +8,22 @@ with open('README.md') as f:
 with open('LICENSE') as f:
     license = f.read()
 
+requires = ['requests==0.14.1']
+
+scripts = ['scripts/dyndnsimple']
+
 setup(
     name='dyndnsimple',
-    version="0.0.6",
+    version="0.0.9",
     description='Package for updating DNSimple domain with a WAN IP address.',
     long_description=readme,
     author='Ben Hughes',
     author_email='bwghughes@gmail.com',
     url='https://github.com/bwghughes/dyndnsimple',
     license=license,
-    #packages=#find_packages(exclude=('test', 'docs', 'config')),
-    packages=['dyndnsimple'],
-    package_dir={'dyndnsimple': 'dyndnsimple'},
+    install_requires=requires,
+    scripts=scripts,
+    packages=find_packages(exclude=('test', 'docs', 'config')),
     classifiers=(
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
