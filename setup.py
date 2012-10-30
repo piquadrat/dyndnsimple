@@ -14,7 +14,7 @@ scripts = ['scripts/dyndnsimple']
 
 setup(
     name='dyndnsimple',
-    version="0.0.10",
+    version="0.0.11",
     description='Package for updating DNSimple domain with a WAN IP address.',
     long_description=readme,
     author='Ben Hughes',
