@@ -1,14 +1,17 @@
 #!/usr/bin/env python
 import json
 import requests
+from requests.exceptions import ConnectionError
 
 
 def get_ip():
+    """ Gets IP address from http://josnip.com """
     response = requests.get("http://jsonip.com")
     return json.loads(response.content).get("ip", None)
 
 
 def update_dns(ip_address, url, options):
+    """ Updated DNS Record with new ip address """
     data = {"record": {"name": "h", "content": ip_address}}
     headers = {"Content-Type": "application/json",
                "X-DNSimple-Token": "{0}:{1}"
@@ -32,16 +35,17 @@ def main():
     options = PARSER.parse_args()
 
     print "Getting IP..."
-    ip_address = get_ip()
-    print "OK: {}".format(ip_address)
-    if ip_address:
-        print "Updating DNSimple..."
-        url = "https://dnsimple.com/domains/{0}/records/{1}"\
-              .format(options.domain_id, options.record_id)
-        update_dns(ip_address, url, options)
-        print "Done."
-    else:
-        print "Cannot find wan ip."
+    try:
+        ip_address = get_ip()
+        print "OK: {}".format(ip_address)
+        if ip_address:
+            print "Updating DNSimple..."
+            url = "https://dnsimple.com/domains/{0}/records/{1}"\
+                  .format(options.domain_id, options.record_id)
+            update_dns(ip_address, url, options)
+            print "Done."
+    except ConnectionError, e:
+        print "Cannot find wan ip: {}".format(e)
 
 
 if __name__ == '__main__':
