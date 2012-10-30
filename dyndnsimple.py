@@ -3,6 +3,7 @@ import json
 import requests
 from requests.exceptions import ConnectionError
 
+__version__ = "0.0.3"
 
 def get_ip():
     """ Gets IP address from http://josnip.com """
