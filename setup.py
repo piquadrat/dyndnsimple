@@ -8,7 +8,7 @@ with open('README.md') as f:
 with open('LICENSE') as f:
     license = f.read()
 
-requires = ['requests==0.14.1']
+requires = ['requests==2.5.0']
 
 scripts = ['scripts/dyndnsimple']
 
